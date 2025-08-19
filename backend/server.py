@@ -191,6 +191,7 @@ async def get_stock_data(symbol: str):
     try:
         stock_data = await db.stock_data.find_one(
             {"symbol": symbol.upper()}, 
+            {"_id": 0},  # Exclude MongoDB ObjectId
             sort=[("created_at", -1)]
         )
         
