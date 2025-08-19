@@ -402,7 +402,7 @@ async def predict_prices(request: PredictionRequest):
 async def get_trained_models():
     """Get list of all trained models"""
     try:
-        models = await db.models.find({}, {"model_data": 0, "scaler_data": 0}).to_list(100)
+        models = await db.models.find({}, {"model_data": 0, "scaler_data": 0, "_id": 0}).to_list(100)
         return models
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Error retrieving models: {str(e)}")
