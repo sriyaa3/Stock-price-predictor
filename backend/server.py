@@ -413,6 +413,7 @@ async def get_predictions(symbol: str):
     try:
         predictions = await db.predictions.find_one(
             {"symbol": symbol.upper()}, 
+            {"_id": 0},  # Exclude MongoDB ObjectId
             sort=[("created_at", -1)]
         )
         
